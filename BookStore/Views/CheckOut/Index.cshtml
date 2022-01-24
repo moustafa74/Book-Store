@@ -1,0 +1,75 @@
+﻿@using BookStore.Models
+@model List<cart>
+@{
+    ViewBag.Title = "Index";
+}
+
+<main>
+    <!-- Hero Area Start-->
+    <div class="slider-area ">
+        <div class="single-slider slider-height2 d-flex align-items-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap text-center">
+                            <h2>Checkout</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--================Checkout Area =================-->
+    <section class="checkout_area section_padding">
+        <div class="container">
+            @{
+                float Total = 0f;
+                <div class="billing_details">
+                    <div class="row">
+
+                        <div class="col-lg-10" style="margin-left:50px">
+                            <div class="order_box">
+                                <h2 style="font-size:30px;">Your Order</h2>
+                                <ul class="list" >
+                                    <li>
+                                        <a style="font-size:30px;">
+                                            Product
+                                            <span style="font-size:30px;">Total</span>
+                                        </a>
+                                    </li>
+                                    @foreach (var item in Model)
+                                    {
+                                        int Total_Price = (int)item.Total_price_cart;
+                                        <li>
+                                            <a style="font-size:20px;">
+                                                @item.book.Title
+                                                <span style="font-size:20px;" class="middle">x @item.Count_Of_Books</span>
+                                                <span style="font-size:20px;" class="last">@Total_Price</span>
+                                            </a>
+
+                                        </li>
+                                        Total += Total_Price;
+                                    }
+                                </ul>
+                                <ul class="list list_2">
+                                    <li>
+                                        <a style="font-size:20px;">
+                                            Total
+                                            <span>@Total Egp </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <form action="/CheckOut/Confirmation/" method="post">
+                                    <button type="submit" class="btn_3">Proceed to Confirmation</button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+    <!--================End Checkout Area =================-->
+</main>
+

@@ -1,0 +1,110 @@
+﻿@using BookStore.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model List<book>
+}
+<main>
+    <!-- Hero Area Start-->
+    <div class="slider-area ">
+        <div class="single-slider slider-height2 d-flex align-items-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap text-center">
+                            <h2>Dashboard</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--================ dashboard part start =================-->
+    <div class="container-fluid">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" style="font-size:25px; padding-right:38px">ISBN</th>
+                    <th scope="col" style="font-size: 25px; padding-right: 38px">title</th>
+                    <th scope="col" style="font-size: 25px; padding-right: 38px">version</th>
+                    <th scope="col" style="font-size: 25px; padding-right: 38px">language</th>
+                    <th scope="col" style="font-size: 25px; padding-right: 38px">price</th>
+                    <th scope="col" style="font-size: 25px; padding-right: 38px">year</th>
+                    <th scope="col" style="font-size: 25px; padding-right: 38px">stock</th>
+                    <th scope="col" style="font-size: 25px; padding-right: 38px">image</th>
+                    <th scope="col" style="font-size: 25px; padding-right: 38px">conclusion</th>
+                    <th scope="col" style="font-size: 25px; padding-right: 38px">auther ID</th>
+                    <th scope="col" style="font-size: 25px; padding-right: 38px">Publisher ID</th>
+                    <th scope="col" style="font-size: 25px; padding-right: 38px">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (book item in Model)
+                {
+                    <tr>
+                        <td style="font-size:20px">
+                            @item.ISBN
+                        </td>
+                        <td style="font-size:20px">
+                            @item.Title
+                        </td>
+                        <td style="font-size:20px">
+                            @item.Version
+                        </td>
+                        <td style="font-size:20px">
+                            @item.Language
+                        </td>
+                        <td style="font-size:20px">
+                            @item.Price
+                        </td>
+                        <td style="font-size:20px">
+                            @item.Year
+                        </td>
+                        @{
+                            if (item.Stock > 0)
+                            {
+                                <td style="font-size:20px">
+                                    @item.Stock
+                                </td>
+                            }
+                            else
+                            {
+                                <td style="color:red;font-size:20px">
+                                    Out of Stock
+                                </td>
+                            }
+
+                        }
+                        <td>
+                            <img src="~/content/assets/img/Books/@item.Image" style="width:70px" />
+
+                        </td>
+                        <td>
+                            @item.conclution
+                        </td>
+                        <td style="font-size:20px">
+                            @item.Author_id
+                        </td>
+                        <td style="font-size:20px">
+                            @item.Publisher_id
+                        </td>
+                        <td>
+                            <span style="display:block;font-size:x-large">
+                                <a href="/Dashboard/Delete_book/@item.ISBN" style="color:black"><i class="far fa-trash-alt"></i></a>
+                            </span>
+                            <span style="display:block;font-size:x-large">
+                                <a href="/Dashboard/Update_book/@item.ISBN" style="color:black"><i class="fas fa-edit"></i></a>
+                            </span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <a href="/Dashboard/Open_Add_book">
+        <div style="text-align:center;width:250px;margin-left:45%;border-radius:10px" class="btn">
+            <i class="fas fa-plus-circle"></i> Add New Book
+        </div>
+     </a>
+</main>

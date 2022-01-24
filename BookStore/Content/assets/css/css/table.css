@@ -1,0 +1,59 @@
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  table {
+    width: 100%;
+    border: 1px solid #CCC;
+    border-spacing: 0;
+  }
+  table th {
+    padding: 15px;
+ 
+    border: 1px solid white
+}
+table thead th {
+    text-align: left; 
+    color: black;
+    font-weight: bold;
+    
+   
+  }
+  table tbody td{
+    border: 1px solid white;
+    background-color: #eee;
+    height: auto;
+    padding-top: 10px;
+    text-align: center;
+  }
+  table tbody td a{
+      display: flex;
+      justify-content: space-around;
+      margin: 25px;
+      flex-direction: column;
+  }
+  .addButton a{
+    display: flex;
+    flex-direction: row;
+    font-size: 25px;
+    justify-content: center;
+    color: #eee;
+    margin-top: 20px;
+    width: 25%;
+    background-color:#FF2020;
+   
+    padding: 10px;
+    border-radius: 10px;
+   
+  }
+  .addButton p {
+    margin: 0px;
+    margin-left: 10px;
+
+  }
+  .addButton{
+    display: flex;
+    justify-content: center;
+  }
+  

@@ -1,0 +1,142 @@
+﻿@{
+    ViewBag.Title = "Open_Add_book";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+}
+
+<!-- Hero Area Start-->
+<div class="slider-area ">
+    <div class="single-slider slider-height2 d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="hero-cap text-center">
+                        <h2>Add Book</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--================ dashboard part start =================-->
+
+<div class="container" style=" border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;">
+    <form action="/Dashboard/Save_Add_book" method="post" enctype="multipart/form-data">
+        <h6 style="color:red">
+            @ViewData["eror"]
+        </h6>
+        <label for="bookispn">Book ISPN</label>
+        <input type="number" id="ISBN" name="ISBN" placeholder="Book ISPN" value="@ViewBag.errorbook" min="0" style="  width: 100%;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-top: 6px;
+          margin-bottom: 16px; " required>
+
+        <label for="Book Name">Book Name</label>
+        <input type="text" id="Title" name="Title" placeholder="Bookname" @*value="@ViewBag.errorbook.Title"*@ style="  width: 100%;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-top: 6px;
+          margin-bottom: 16px; " required>
+
+        <label for="version">version</label>
+        <input type="text" id="Version" name="Version" placeholder="version" @*value="@ViewBag.errorbook.ISBN"*@ style="  width: 100%;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-top: 6px;
+          margin-bottom: 16px; " required>
+
+        <label for="language">language</label>
+        <input type="text" id="Language" name="Language" placeholder="language" @*value="@ViewBag.errorbook.ISBN"*@ style="  width: 100%;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-top: 6px;
+          margin-bottom: 16px; " required>
+
+        <label for="price">price</label>
+        <input type="number" id="Price" name="Price" placeholder="price" @*value="@ViewBag.errorbook.Price"*@ min="0" step="0.01" style="  width: 100%;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-top: 6px;
+          margin-bottom: 16px; " required>
+
+        <label for="year">year</label>
+        <input type="text" id="Year" name="Year" placeholder="year" @*value="@ViewBag.errorbook.Year"*@ style="  width: 100%;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-top: 6px;
+          margin-bottom: 16px; " required>
+
+        <label for="stock">stock</label>
+        <input type="number" id="Stock" name="Stock" placeholder="stock" @*value="@ViewBag.errorbook.Stock"*@ min="0" style="  width: 100%;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-top: 6px;
+          margin-bottom: 16px; " required>
+
+        <label for="image"> Image </label>
+
+        <input type="file" name="Image_file" accept="image/png, image/gif, image/jpeg" style="  width: 100%;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-top: 6px;
+          margin-bottom: 16px; " required>
+        <h6 style="color:red">
+            @ViewData["erorPid"]
+        </h6>
+        <label for="price">Publisher ID</label>
+        <input type="number" id="text" name="Publisher_id" placeholder="Publisher ID" value="@ViewBag.errorPid" min="0" required style="  width: 100%;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-top: 6px;
+          margin-bottom: 16px;">
+
+        <h6 style="color:red">
+            @ViewData["erorAid"]
+        </h6>
+        <label for="price">Author ID</label>
+        <input type="number" id="text" name="Author_id" placeholder="Author ID" value="@ViewBag.errorAid" required style="  width: 100%;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-top: 6px;
+          margin-bottom: 16px; ">
+
+
+
+        <label for="subject">Conclution</label>
+        <input type="text" id="subject" name="Conclution" placeholder="conclusion" @*value="@ViewBag.errorbook.Conclution"*@ style="  width: 100%;
+          height: 100px;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-top: 6px;
+          margin-bottom: 16px; " required>
+
+        <input type="submit" class="btn" value="Add Book" style="text-align:center;width:250px;border-radius:10px">
+
+
+    </form>
+</div>

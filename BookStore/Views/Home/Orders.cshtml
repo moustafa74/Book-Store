@@ -1,0 +1,79 @@
+﻿@using BookStore.Models
+@{
+    ViewBag.Title = "Orders";
+}
+@model List<order>
+<main>
+    <!-- Hero Area Start-->
+    <div class="slider-area ">
+        <div class="single-slider slider-height2 d-flex align-items-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap text-center">
+                            <h2>Orders</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--================Checkout Area =================-->
+    <section class="checkout_area section_padding">
+        <div class="container">
+            @{
+                
+                <div class="billing_details">
+                    <div class="row">
+
+                        <div class="col-lg-10" style="margin-left:50px">
+                            <div class="order_box">
+                                <h2>Your Orders</h2>
+                                <ul class="list">
+                                    @foreach (order item in Model)
+                                    {
+                                        <li style="color:blue">
+
+                                            Order ID : @item.Order_id
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Product
+                                                <span>Price</span>
+                                            </a>
+                                        </li>
+                                        foreach (sub_order item1 in item.sub_order.ToList())
+                                        {
+                                            <li>
+                                                <a href="#">
+                                                    @item1.book.Title
+                                                    <span class="middle">x @item1.count</span>
+                                                    <span class="last">@item1.Total_price_sub</span>
+                                                </a>
+                                            </li>
+                                        }
+                                        <li>
+                                            <a href="#">
+                                                Total 
+                                                <span>@item.Total EGP</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Date
+                                                <span> @item.Date</span>
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+    <!--================End Checkout Area =================-->
+</main>
+

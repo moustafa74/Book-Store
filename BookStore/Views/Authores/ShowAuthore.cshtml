@@ -1,0 +1,68 @@
+﻿@using BookStore.Models
+@{
+    ViewBag.Title = "ShowAuthore";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model List<author>
+<!-- Hero Area Start-->
+<div class="slider-area ">
+    <div class="single-slider slider-height2 d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="hero-cap text-center">
+                        <h2>Dashboard</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--================ dashboard part start =================-->
+
+
+<div class="container-fluid">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col" style="font-size:25px; padding-right:38px">Authore ID</th>
+                <th scope="col" style="font-size:25px; padding-right:38px">Name</th>
+                <th scope="col" style="font-size: 25px; padding-right: 38px">Email</th>
+                <th scope="col" style="font-size: 25px; padding-right: 38px">Phone</th>
+                <th scope="col" style="font-size: 25px; padding-right: 38px">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (author item in Model)
+            {
+                <tr>
+                    <td style="font-size:20px">
+                        @item.Author_id
+                    </td>
+                    <td style="font-size:20px">
+                        @item.Name
+                    </td>
+                    <td style="font-size:20px">
+                        @item.E_Mail
+                    </td>
+                    <td style="font-size:20px">
+                        @item.Phone
+                    </td>
+                    <td>
+                        <span style="display:block;font-size:x-large">
+                            <a href="/Authores/Delete_Authore/@item.Author_id" style="color:black"><i class="far fa-trash-alt"></i></a>
+                        </span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div style="text-align:center;width:250px;margin-left:45%;border-radius:10px" class="btn">
+    <a href="/Authores/Open_Add_Authore">
+        <i class="fas fa-plus-circle"></i> Add New Authore
+    </a>
+</div>
+
+

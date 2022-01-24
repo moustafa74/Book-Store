@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="book_storeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="admin">
+    <Key>
+      <PropertyRef Name="Admin_id" />
+    </Key>
+    <Property Name="Admin_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="E_Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="author">
+    <Key>
+      <PropertyRef Name="Author_id" />
+    </Key>
+    <Property Name="Author_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="E_Mail" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="books" Relationship="Self.fk_book_author1" FromRole="author" ToRole="book" />
+  </EntityType>
+  <EntityType Name="book">
+    <Key>
+      <PropertyRef Name="ISBN" />
+    </Key>
+    <Property Name="ISBN" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Version" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Language" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Price" Type="Single" />
+    <Property Name="Year" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Stock" Type="Int32" />
+    <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="conclution" Type="String" MaxLength="10000" FixedLength="false" Unicode="false" />
+    <Property Name="Author_id" Type="Int32" Nullable="false" />
+    <Property Name="Publisher_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="author" Relationship="Self.fk_book_author1" FromRole="book" ToRole="author" />
+    <NavigationProperty Name="publisher" Relationship="Self.fk_book_publisher1" FromRole="book" ToRole="publisher" />
+    <NavigationProperty Name="carts" Relationship="Self.fk_cart_book" FromRole="book" ToRole="cart" />
+    <NavigationProperty Name="sub_order" Relationship="Self.fk_sub_order_book1" FromRole="book" ToRole="sub_order" />
+  </EntityType>
+  <EntityType Name="cart">
+    <Key>
+      <PropertyRef Name="ISBN" />
+      <PropertyRef Name="customer_id" />
+    </Key>
+    <Property Name="ISBN" Type="Int32" Nullable="false" />
+    <Property Name="customer_id" Type="Int32" Nullable="false" />
+    <Property Name="Count_Of_Books" Type="Int32" />
+    <Property Name="Total_price_cart" Type="Single" />
+    <NavigationProperty Name="book" Relationship="Self.fk_cart_book" FromRole="cart" ToRole="book" />
+    <NavigationProperty Name="customer" Relationship="Self.fk_cart_customer1" FromRole="cart" ToRole="customer" />
+  </EntityType>
+  <EntityType Name="customer">
+    <Key>
+      <PropertyRef Name="customer_id" />
+    </Key>
+    <Property Name="customer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="E_Mail" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="carts" Relationship="Self.fk_cart_customer1" FromRole="customer" ToRole="cart" />
+    <NavigationProperty Name="orders" Relationship="Self.fk_order_customer1" FromRole="customer" ToRole="order" />
+  </EntityType>
+  <EntityType Name="order">
+    <Key>
+      <PropertyRef Name="Order_id" />
+    </Key>
+    <Property Name="Order_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Date" Type="DateTime" />
+    <Property Name="Total" Type="Single" />
+    <Property Name="customer_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="customer" Relationship="Self.fk_order_customer1" FromRole="order" ToRole="customer" />
+    <NavigationProperty Name="sub_order" Relationship="Self.fk_sub_order_order1" FromRole="order" ToRole="sub_order" />
+  </EntityType>
+  <EntityType Name="publisher">
+    <Key>
+      <PropertyRef Name="Publisher_id" />
+    </Key>
+    <Property Name="Publisher_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="E_Mail" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Adress" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="books" Relationship="Self.fk_book_publisher1" FromRole="publisher" ToRole="book" />
+  </EntityType>
+  <EntityType Name="sub_order">
+    <Key>
+      <PropertyRef Name="ISBN" />
+      <PropertyRef Name="Order_id" />
+    </Key>
+    <Property Name="ISBN" Type="Int32" Nullable="false" />
+    <Property Name="Order_id" Type="Int32" Nullable="false" />
+    <Property Name="count" Type="Int32" />
+    <Property Name="Total_price_sub" Type="Single" />
+    <NavigationProperty Name="book" Relationship="Self.fk_sub_order_book1" FromRole="sub_order" ToRole="book" />
+    <NavigationProperty Name="order" Relationship="Self.fk_sub_order_order1" FromRole="sub_order" ToRole="order" />
+  </EntityType>
+  <Association Name="fk_book_author1">
+    <End Role="author" Type="Self.author" Multiplicity="1" />
+    <End Role="book" Type="Self.book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="author">
+        <PropertyRef Name="Author_id" />
+      </Principal>
+      <Dependent Role="book">
+        <PropertyRef Name="Author_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_book_publisher1">
+    <End Role="publisher" Type="Self.publisher" Multiplicity="1" />
+    <End Role="book" Type="Self.book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="publisher">
+        <PropertyRef Name="Publisher_id" />
+      </Principal>
+      <Dependent Role="book">
+        <PropertyRef Name="Publisher_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_cart_book">
+    <End Role="book" Type="Self.book" Multiplicity="1" />
+    <End Role="cart" Type="Self.cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="book">
+        <PropertyRef Name="ISBN" />
+      </Principal>
+      <Dependent Role="cart">
+        <PropertyRef Name="ISBN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_sub_order_book1">
+    <End Role="book" Type="Self.book" Multiplicity="1" />
+    <End Role="sub_order" Type="Self.sub_order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="book">
+        <PropertyRef Name="ISBN" />
+      </Principal>
+      <Dependent Role="sub_order">
+        <PropertyRef Name="ISBN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_cart_customer1">
+    <End Role="customer" Type="Self.customer" Multiplicity="1" />
+    <End Role="cart" Type="Self.cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customer">
+        <PropertyRef Name="customer_id" />
+      </Principal>
+      <Dependent Role="cart">
+        <PropertyRef Name="customer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_order_customer1">
+    <End Role="customer" Type="Self.customer" Multiplicity="1" />
+    <End Role="order" Type="Self.order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customer">
+        <PropertyRef Name="customer_id" />
+      </Principal>
+      <Dependent Role="order">
+        <PropertyRef Name="customer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_sub_order_order1">
+    <End Role="order" Type="Self.order" Multiplicity="1" />
+    <End Role="sub_order" Type="Self.sub_order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="order">
+        <PropertyRef Name="Order_id" />
+      </Principal>
+      <Dependent Role="sub_order">
+        <PropertyRef Name="Order_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="book_storeEntities10" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="admins" EntityType="Self.admin" />
+    <EntitySet Name="authors" EntityType="Self.author" />
+    <EntitySet Name="books" EntityType="Self.book" />
+    <EntitySet Name="carts" EntityType="Self.cart" />
+    <EntitySet Name="customers" EntityType="Self.customer" />
+    <EntitySet Name="orders" EntityType="Self.order" />
+    <EntitySet Name="publishers" EntityType="Self.publisher" />
+    <EntitySet Name="sub_order" EntityType="Self.sub_order" />
+    <AssociationSet Name="fk_book_author1" Association="Self.fk_book_author1">
+      <End Role="author" EntitySet="authors" />
+      <End Role="book" EntitySet="books" />
+    </AssociationSet>
+    <AssociationSet Name="fk_book_publisher1" Association="Self.fk_book_publisher1">
+      <End Role="publisher" EntitySet="publishers" />
+      <End Role="book" EntitySet="books" />
+    </AssociationSet>
+    <AssociationSet Name="fk_cart_book" Association="Self.fk_cart_book">
+      <End Role="book" EntitySet="books" />
+      <End Role="cart" EntitySet="carts" />
+    </AssociationSet>
+    <AssociationSet Name="fk_sub_order_book1" Association="Self.fk_sub_order_book1">
+      <End Role="book" EntitySet="books" />
+      <End Role="sub_order" EntitySet="sub_order" />
+    </AssociationSet>
+    <AssociationSet Name="fk_cart_customer1" Association="Self.fk_cart_customer1">
+      <End Role="customer" EntitySet="customers" />
+      <End Role="cart" EntitySet="carts" />
+    </AssociationSet>
+    <AssociationSet Name="fk_order_customer1" Association="Self.fk_order_customer1">
+      <End Role="customer" EntitySet="customers" />
+      <End Role="order" EntitySet="orders" />
+    </AssociationSet>
+    <AssociationSet Name="fk_sub_order_order1" Association="Self.fk_sub_order_order1">
+      <End Role="order" EntitySet="orders" />
+      <End Role="sub_order" EntitySet="sub_order" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

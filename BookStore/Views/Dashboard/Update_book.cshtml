@@ -1,0 +1,138 @@
+﻿@using BookStore.Models
+@model book
+@{
+    ViewBag.Title = "Update_book";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<!-- Hero Area Start-->
+<div class="slider-area ">
+    <div class="single-slider slider-height2 d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="hero-cap text-center">
+                        <h2>Update Book</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--================ dashboard part start =================-->
+
+<div class="container" style=" border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;">
+    <form action="/Dashboard/Save_update_book" method="post" enctype="multipart/form-data">
+        <label for="bookispn">Book ISPN</label>
+        <input type="number"  name="ISBN" placeholder="Book ISPN" value="@Model.ISBN" min="0" style="  width: 100%;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-top: 6px;
+          margin-bottom: 16px; " required >
+
+        <label for="Book Name">Book Name</label>
+        <input type="text" name="Title" placeholder="Bookname" value="@Model.Title" style="  width: 100%;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-top: 6px;
+          margin-bottom: 16px; " required>
+
+        <label for="version">version</label>
+        <input type="text"  name="Version" placeholder="version" value="@Model.Version" style="  width: 100%;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-top: 6px;
+          margin-bottom: 16px; " required>
+
+        <label for="language">language</label>
+        <input type="text"  name="Language" placeholder="language" value="@Model.Language" style="  width: 100%;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-top: 6px;
+          margin-bottom: 16px; " required>
+
+        <label for="price">price</label>
+        <input type="number"  name="Price" placeholder="price" value="@Model.Price" min="0" step="0.01" style="  width: 100%;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-top: 6px;
+          margin-bottom: 16px; " required>
+
+        <label for="year">year</label>
+        <input type="text"  name="Year" placeholder="year" value="@Model.Year" style="  width: 100%;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-top: 6px;
+          margin-bottom: 16px; " required>
+
+        <label for="stock">stock</label>
+        <input type="number" name="Stock" placeholder="stock" value="@Model.Stock" min="0" style="  width: 100%;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-top: 6px;
+          margin-bottom: 16px; " required>
+
+        <label for="image"> Image </label>
+
+        <input type="file" name="Image_file" accept="image/png, image/gif, image/jpeg" value="" style="  width: 100%;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-top: 6px;
+          margin-bottom: 16px; " required>
+
+        <h6 style="color:red">
+            @ViewData["erorPid"]
+        </h6>
+        <label for="price">Publisher ID</label>
+        <input type="number"  name="Publisher_id" placeholder="" value="@Model.Publisher_id" min="0" required style="  width: 100%;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-top: 6px;
+          margin-bottom: 16px;">
+
+        <h6 style="color:red">
+            @ViewData["erorAid"]
+        </h6>
+        <label for="price">Author ID</label>
+        <input type="number"  name="Author_id" placeholder="" value="@Model.Author_id" required style="  width: 100%;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-top: 6px;
+          margin-bottom: 16px; ">
+        <label for="subject">Conclution</label>
+        <input type="text"  name="Conclution" placeholder="conclusion" value="@Model.conclution" style="  width: 100%;
+          height: 100px;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-top: 6px;
+          margin-bottom: 16px; " required>
+
+        <input type="submit" class="btn" value="Update" style="text-align:center;width:250px;border-radius:10px">
+
+
+    </form>
+</div>
+

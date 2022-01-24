@@ -1,0 +1,78 @@
+﻿@using BookStore.Models
+@model List<cart>
+@{
+    ViewBag.Title = "Index";
+}
+
+<main>
+    <!-- Hero Area Start-->
+    <div class="slider-area ">
+        <div class="single-slider slider-height2 d-flex align-items-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap text-center">
+                            <h2>Cart List</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--================Cart Area =================-->
+    <section class="cart_area section_padding">
+        <div class="container">
+            <div class="cart_inner">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col" style="font-size:25px;">Product</th>
+                                <th scope="col" style="font-size:25px;">Price</th>
+                                <th scope="col" style="font-size:25px;">Quantity</th>
+                                <th scope="col" style="font-size:25px;">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (cart item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="media">
+                                            <div class="d-flex">
+                                                @*<img src="~/content/assets/img/Books/@item.book.Image" alt="" />*@
+                                                <img src="~/content/assets/img/Books/@item.book.Image" alt="" />
+                                            </div>
+                                            <div class="media-body">
+                                                <p style="font-size:20px;">@item.book.Title</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        @item.book.Price EGP
+                                    </td>
+                                    <td>
+                                        <div class="product_count">
+                                            @item.Count_Of_Books
+                                        </div>
+                                    </td>
+                                    <td>
+                                        @item.Total_price_cart EGP
+                                    </td>
+                                    <td>
+                                        <a href="/Cart/RemoveItem/@item.ISBN"><i class="fa fa-times-circle" style="font-size:25px;color:dodgerblue"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div class="checkout_btn_inner float-right">
+                        <a class="btn_1" href="/Shop">Continue Shopping</a>
+                        <a class="btn_1 checkout_btn_1" href="/CheckOut">Proceed to checkout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Cart Area =================-->
+</main>

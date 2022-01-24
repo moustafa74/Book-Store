@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "Open_Add_Authore";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!-- Hero Area Start-->
+<div class="slider-area ">
+    <div class="single-slider slider-height2 d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="hero-cap text-center">
+                        <h2>Add Publisher</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--================ dashboard part start =================-->
+
+<div class="container" style=" border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;">
+    <form action="/Authores/Save_Add_Authore" method="post" enctype="multipart/form-data">
+        <h6 style="color:red">
+            @ViewData["erorAid"]
+        </h6>
+        <label for="Author ID">Author ID</label>
+        <input type="number" id="Author_id" name="Author_id" placeholder="Author ID" value="@ViewBag.errorAid" min="0" style="  width: 100%;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-top: 6px;
+          margin-bottom: 16px; " required>
+
+        <label for="E_Mail">E_Mail</label>
+        <input type="text" id="E_Mail" name="E_Mail" placeholder="E_Mail" style="  width: 100%;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-top: 6px;
+          margin-bottom: 16px; " required>
+
+        <label for="Name">Name</label>
+        <input type="text" id="Name" name="Name" placeholder="Name" style="  width: 100%;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-top: 6px;
+          margin-bottom: 16px; " required>
+
+        <label for="Phone">Phone</label>
+        <input type="text" id="Phone" name="Phone" placeholder="Phone" style="  width: 100%;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-top: 6px;
+          margin-bottom: 16px; " required>
+        <input type="submit" class="btn" value="Add Author" style="text-align:center;width:250px;border-radius:10px">
+    </form>
+</div>
+
